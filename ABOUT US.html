@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Karugutu SDA Pathfinder Club</title>
+  <link rel="icon" type="image/png" href="images/KA.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    .law-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      border-left: 5px solid var(--primary);
+    }
+
+    .law-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-left-color: var(--accent);
+    }
+
+    .law-card.expanded {
+      background-color: #fffdf5;
+      border-color: var(--accent);
+    }
+
+    .law-number {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .law-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0.25rem 0 0.5rem;
+    }
+
+    .law-details {
+      display: none;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border);
+      padding-top: 0.6rem;
+      margin-top: 0.5rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 860px;
+      margin: 2rem auto 0;
+      padding-left: 2rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.6rem;
+      top: 0.2rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      border: 4px solid var(--navy);
+    }
+
+    .timeline-content {
+      background: var(--surface);
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+
+    .timeline-year {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--navy);
+      border: 1px solid var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.4rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand-wrapper">
+        <a href="INDEX.html">
+          <img src="images/KA.png" alt="Karugutu SDA Pathfinder Logo" class="brand-logo">
+        </a>
+        <div class="brand-text">
+          <h1>Karugutu Pathfinder Club</h1>
+          <p>Faith &bull; Adventure &bull; Leadership</p>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="INDEX.html" class="nav-link"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="ABOUT US.html" class="nav-link active"><i class="fa fa-info-circle"></i> About Us</a></li>
+          <li><a href="JOIN US.html" class="nav-link"><i class="fa fa-user-plus"></i> Join Us</a></li>
+          <li><a href="MEDIA.html" class="nav-link"><i class="fa fa-photo"></i> Media & Audio</a></li>
+          <li><a href="RESOURCES.html" class="nav-link"><i class="fa fa-book"></i> Resources</a></li>
+          <li><a href="STAFF & CONTACT.html" class="nav-link"><i class="fa fa-phone"></i> Staff & Contact</a></li>
+          <li><a href="JOIN US.html" class="nav-cta-btn"><i class="fa fa-id-card-o"></i> Register</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-banner" style="background-image: url('images/about image.webp');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge"><i class="fa fa-info-circle"></i> Club Identity & Heritage</span>
+      <h1 class="hero-title">About Karugutu SDA Pathfinder Club</h1>
+      <p class="hero-subtitle">Discover our mission, our sacred law, our anthem, and the rich history that shapes our
+        young leaders in Uganda.</p>
+    </div>
+  </section>
+
+  <!-- MAIN WRAPPER -->
+  <main class="main-wrapper">
+
+    <!-- MISSION, AIM, MOTTO & PLEDGE GRID -->
+    <section class="section-header">
+      <span class="section-tag">Our Guiding Light</span>
+      <h2 class="section-title">Mission, Aim, Motto & Pledge</h2>
+    </section>
+
+    <div class="grid-2" style="margin-bottom: 3.5rem;">
+      <!-- Mission -->
+      <div class="card" style="padding:1.75rem; border-top: 5px solid var(--accent);">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+          <div
+            style="width:40px; height:40px; border-radius:50%; background:rgba(11,29,58,0.08); color:var(--navy); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
+            <i class="fa fa-bullhorn"></i>
+          </div>
+          <h3 style="color:var(--navy); font-size:1.3rem;">Our Mission</h3>
+        </div>
+        <p style="font-size:1.1rem; font-weight:600; color:var(--navy); margin-bottom:0.5rem;">
+          "Save the Lost, Serve Humanity."
+        </p>
+        <p style="color:var(--text-muted); font-size:0.95rem;">
+          The Pathfinder Club operates under the Adventist Youth Ministries, dedicated to winning young hearts to Jesus
+          Christ and leading them into active, unselfish Christian service.
+        </p>
+      </div>
+
+      <!-- Aim & Motto -->
+      <div class="card" style="padding:1.75rem; border-top: 5px solid var(--accent);">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+          <div
+            style="width:40px; height:40px; border-radius:50%; background:rgba(245,158,11,0.15); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
+            <i class="fa fa-flag"></i>
+          </div>
+          <h3 style="color:var(--navy); font-size:1.3rem;">AIM & MOTTO</h3>
+        </div>
+        <div style="margin-bottom:0.75rem;">
+          <strong style="color:var(--navy); display:block; font-size:0.9rem;">AIM:</strong>
+          <p style="font-size:1rem; font-weight:600; color:var(--navy);">
+            "To take the Advent message to all the world in my Generation."
+          </p>
+        </div>
+        <div>
+          <strong style="color:var(--navy); display:block; font-size:0.9rem;">MOTTO:</strong>
+          <p style="font-size:1rem; font-weight:600; color:var(--navy);">
+            "The love of Christ Compels me."
+          </p>
+        </div>
+      </div>
+
+      <!-- Pledge -->
+      <div class="card" style="padding:1.75rem; border-top: 5px solid var(--accent); grid-column: 1 / -1;">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+          <div
+            style="width:40px; height:40px; border-radius:50%; background:rgba(11,29,58,0.08); color:var(--navy); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
+            <i class="fa fa-hand-paper-o"></i>
+          </div>
+          <h3 style="color:var(--navy); font-size:1.3rem;">The Pathfinder Pledge</h3>
+        </div>
+        <blockquote
+          style="font-size:1.15rem; font-style:italic; color:var(--navy); border-left:4px solid var(--accent); padding-left:1.25rem; margin:0.5rem 0 1rem; line-height:1.7;">
+          "By the Grace of God,<br>
+          I will be pure, kind, and true.<br>
+          I will keep the Pathfinder Law.<br>
+          I will be a servant of God and a friend to man."
+        </blockquote>
+        <p style="font-size:0.9rem; color:var(--text-muted);">
+          Recited at every Pathfinder induction, flag-raising, and camporee, affirming our lifelong dedication to God
+          and community.
+        </p>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE 8 PATHFINDER LAWS EXPLORER -->
+    <section style="margin-bottom: 3.5rem;">
+      <div class="section-header">
+        <span class="section-tag">Interactive Law Explorer</span>
+        <h2 class="section-title">The 8 Pathfinder Laws</h2>
+        <p class="section-desc">Click any card below to discover the practical meaning and spiritual application of each
+          law in our daily lives.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Law 1 -->
+        <div class="law-card">
+          <span class="law-number">Law 1</span>
+          <h4 class="law-title">Keep the Morning Watch</h4>
+          <p style="font-size:0.92rem; color:var(--text-main);">I will pray and study my Bible each day.</p>
+          <div class="law-details">
+            <strong>Scriptural Insight:</strong> Psalm 5:3 — Starting each morning in quiet communion with God provides
+            the spiritual armor and wisdom to conquer every temptation of the day.
+          </div>
+        </div>
+
+        <!-- Law 2 -->
+        <div class="law-card">
+          <span class="law-number">Law 2</span>
+          <h4 class="law-title">Do My Honest Part</h4>
+          <p style="font-size:0.92rem; color:var(--text-main);">By the power of God, I will do my share and be
+            dependable.</p>
+          <div class="law-details">
+            <strong>Scriptural Insight:</strong> Ecclesiastes 9:10 — Whatever your hand finds to do, do it with all your
+            might. Fulfilling duties at home, school, and church with integrity.
+          </div>
+        </div>
+
+        <!-- Law 3 -->
+        <div class="law-card">
+          <span class="law-number">Law 3</span>
+          <h4 class="law-title">Care for My Body</h4>
+          <p style="font-size:0.92rem; color:var(--text-main);">I will be temperate in all things and strive for
+            physical fitness.</p>
+          <div class="law-details">
+            <strong>Scriptural Insight:</strong> 1 Corinthians 6:19-20 — Our bodies are temples of the Holy Spirit. We
+            abstain from harmful substances and maintain active exercise and nutrition.
+          </div>
+        </div>
+
+        <!-- Law 4 -->
+        <div class="law-card">
+          <span class="law-number">Law 4</span>
+          <h4 class="law-title">Keep a Level Eye</h4>
+          <p style="font-size:0.92rem; color:var(--text-main);">I will not lie, cheat, or deceive; I will face
+            difficulties bravely.</p>
+          <div class="law-details">
+            <strong>Scriptural Insight:</strong> Proverbs 4:25 — Look straight ahead and fix your eyes on what is before
+            you. Living with moral courage, honesty, and truthfulness.
+          </div>
+        </div>
+
+        <!-- Law 5 -->
+        <div class="law-card">
+          <span class="law-number">Law 5</span>
+          <h4 class="law-title">Be Courteous and Obedient</h4>
+          <p style="font-size:0.92rem; color:var(--text-main);">I will be kind to others, respecting parents, teachers,
+            and leaders.</p>
+          <div class="law-details">
+            <strong>Scriptural Insight:</strong> Ephesians 6:1-3 — Cultivating genuine politeness, showing reverence to
+            our elders, and walking in willing obedience.
+          </div>
+        </div>
+
+        <!-- Law 6 -->
+        <div class="law-card">
+          <span class="law-number">Law 6</span>
+          <h4 class="law-title">Walk Softly in the Sanctuary</h4>
+          <p style="font-size:0.92rem; color:var(--text-main);">In any place of worship, I will be quiet, reverent, and
+            attentive.</p>
+          <div class="law-details">
+            <strong>Scriptural Insight:</strong> Habakkuk 2:20 — The Lord is in His holy temple; let all the earth keep
+            silence before Him. Maintaining reverence in God's presence.
+          </div>
+        </div>
+
+        <!-- Law 7 -->
+        <div class="law-card">
+          <span class="law-number">Law 7</span>
+          <h4 class="law-title">Keep a Song in My Heart</h4>
+          <p style="font-size:0.92rem; color:var(--text-main);">I will be cheerful, praising God even during times of
+            trial.</p>
+          <div class="law-details">
+            <strong>Scriptural Insight:</strong> 1 Thessalonians 5:16-18 — Rejoice always; pray without ceasing; give
+            thanks in all circumstances. A cheerful countenance brings light into dark moments.
+          </div>
+        </div>
+
+        <!-- Law 8 -->
+        <div class="law-card">
+          <span class="law-number">Law 8</span>
+          <h4 class="law-title">Go on God's Errands</h4>
+          <p style="font-size:0.92rem; color:var(--text-main);">I will always be ready to tell others about Jesus and do
+            good deeds.</p>
+          <div class="law-details">
+            <strong>Scriptural Insight:</strong> Isaiah 6:8 — "Here am I; send me." Eager readiness to serve the needy
+            and share the gospel of Christ's second coming.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE PATHFINDER ANTHEM SING-ALONG -->
+    <section
+      style="margin-bottom: 3.5rem; background-color: var(--navy); border-radius: var(--radius-lg); padding: 2.5rem; color:#fff; box-shadow: var(--shadow-lg); border: 2px solid var(--accent);">
+      <div
+        style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1.5rem; margin-bottom:1.5rem;">
+        <div>
+          <span
+            style="color:var(--accent); font-weight:700; text-transform:uppercase; font-size:0.85rem; letter-spacing:1px;">Official
+            Club Hymn</span>
+          <h3 style="font-size:1.8rem; margin:0.25rem 0;">The Pathfinder Song</h3>
+        </div>
+        <button id="playAnthemBtn" class="btn btn-accent">
+          <i class="fa fa-play" aria-hidden="true"></i> Play Anthem Instrumental
+        </button>
+      </div>
+
+      <div
+        style="background-color:rgba(255,255,255,0.06); border-radius:var(--radius-md); padding:1.5rem; font-size:1.15rem; line-height:1.9; font-weight:500; text-align:center; border:1px solid rgba(255,255,255,0.1);">
+        <p style="margin-bottom:0.75rem;">
+          Oh, we are the Pathfinders strong,<br>
+          The servants of God are we.<br>
+          Faithful as we march along,<br>
+          In kindness, truth, and purity!
+        </p>
+        <p style="color:var(--accent-gold); font-weight:700;">
+          A Message to tell to the world,<br>
+          A truth that will set us free!<br>
+          King Jesus the Savior's coming back<br>
+          For you, and me!
+        </p>
+      </div>
+    </section>
+
+    <!-- CLUB HISTORY & TIMELINE -->
+    <section style="margin-bottom: 3.5rem;">
+      <div class="section-header">
+        <span class="section-tag">Our Journey & Milestones</span>
+        <h2 class="section-title">Brief History of Karugutu Pathfinder Club</h2>
+        <p class="section-desc">From our humble beginnings to ranking among the most active clubs in the Rwenzori Field
+          & Uganda Union.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- Milestone 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Early Formation</span>
+            <h4 style="color:var(--navy); font-size:1.15rem; margin-bottom:0.35rem;">A Passionate Beginning</h4>
+            <p style="color:var(--text-muted); font-size:0.95rem;">
+              Just like any great movement, Karugutu Pathfinder Club began as a small, spirited group of young
+              Christians brought together under approachable youth leadership organized by <strong>Mutalinga
+                Jockim</strong>. They were supported by committed Master Guides who had been invested by the Rwenzori
+              Field Youth Director <strong>Pr. Abraham Birenge</strong>, including <strong>MG Kalsmart Joel</strong>,
+              <strong>MG Enock Babara</strong>, <strong>MG Rwabindo Agad</strong>, and others.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2024</span>
+            <h4 style="color:var(--navy); font-size:1.15rem; margin-bottom:0.35rem;">Official Induction & Recognition
+            </h4>
+            <p style="color:var(--text-muted); font-size:0.95rem;">
+              Through dedicated drill rehearsals, camp activities, and spiritual dedication, the club gained momentum.
+              In 2024, Karugutu SDA Pathfinder Club was officially inducted by <strong>Pr. Abraham Birenge</strong> and
+              received formal recognition within the church structure.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2025 - Present</span>
+            <h4 style="color:var(--navy); font-size:1.15rem; margin-bottom:0.35rem;">Excellence, Camporees & Media
+              Leadership</h4>
+            <p style="color:var(--text-muted); font-size:0.95rem;">
+              Today, the club stands as one of the best and most active clubs in the Rwenzori Field and Uganda Union.
+              Under church leaders like <strong>Elder Syadiba Yeremiah</strong> and <strong>Pr. Ngonzi Stephen</strong>,
+              the club excels in the <strong>Pathfinder Bible Experience (PBE)</strong>, community outreach, and
+              evangelistic efforts. Our media and digital outreach has flourished under the creative direction of
+              <strong>MG Asigya Augustine Bwambale</strong> and web development by <strong>MGT Surprise
+                Dickens</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATHFINDER TRIANGLE EMBLEM EXPLAINER -->
+    <section
+      style="background:var(--surface); border-radius:var(--radius-lg); padding:2rem; border:1px solid var(--border); box-shadow:var(--shadow-sm);">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:2rem;">
+        <div style="flex:1; min-width:280px; text-align:center;">
+          <img src="images/KA.png" alt="Pathfinder Triangle Logo"
+            style="max-width:200px; margin:0 auto; border-radius:14px; box-shadow:var(--shadow-md);">
+        </div>
+        <div style="flex:2; min-width:300px;">
+          <h3 style="color:var(--navy); font-size:1.5rem; margin-bottom:0.75rem;">Meaning of the Pathfinder Emblem</h3>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.95rem;">
+            <li><strong><span style="color:var(--primary);">Red (Sacrifice):</span></strong> Reminds us of Christ's
+              sacrifice on the cross for our redemption.</li>
+            <li><strong><span style="color:var(--accent);">Gold (Excellence):</span></strong> Represents the highest
+              standard of Christian character and nobility.</li>
+            <li><strong><span style="color:#0d1b2a;">Blue (Loyalty):</span></strong> Symbolizes steadfast loyalty to
+              God, parents, church, and country.</li>
+            <li><strong><span style="color:#64748b;">White (Purity):</span></strong> Manifests Christ's righteousness
+              and moral purity in our actions.</li>
+            <li><strong><span>Sword (The Word of God):</span></strong> The Bible is our spiritual weapon and compass in
+              every life challenge.</li>
+            <li><strong><span>Shield (Faith):</span></strong> The shield of faith that extinguishes all the flaming
+              arrows of the evil one.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <!-- Col 1: Club Identity & Social -->
+      <div class="footer-col">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <img src="images/KA.png" alt="Karugutu SDA Pathfinder Logo"
+            style="width:44px; height:44px; border-radius:50%; background:#fff; padding:2px; border:2px solid var(--accent);">
+          <div>
+            <h3 style="margin:0; padding:0; border:none; font-size:1.15rem; color:#fff;">Karugutu Pathfinder Club</h3>
+            <span style="font-size:0.75rem; color:var(--accent); font-weight:600;">Seventh-day Adventist Youth</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          Empowering youth through faith, discipline, outdoor adventure, and Christian fellowship. Located in Karugutu,
+          Ntoroko District, Rwenzori Field, Uganda.
+        </p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/profile.php?id=61569756547090" target="_blank" class="social-icon-btn"
+            aria-label="Facebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.instagram.com/karugutu_sda_church_pathfinder?igsh=MTYyajJ6eW5udzZ6dw==" target="_blank"
+            class="social-icon-btn" aria-label="Instagram" title="Instagram"><i class="fa fa-instagram"></i></a>
+          <a href="https://whatsapp.com/channel/0029VbBUS8A5kg73nINDEj068:27%20PM" target="_blank"
+            class="social-icon-btn" aria-label="WhatsApp Channel" title="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+          <a href="https://www.tiktok.com/@karugutu.sda.chur" target="_blank" class="social-icon-btn"
+            aria-label="TikTok" title="TikTok"><i class="fa fa-music"></i></a>
+          <a href="https://www.youtube.com/@KarugutuPathfinderClub" target="_blank" class="social-icon-btn"
+            aria-label="YouTube" title="YouTube"><i class="fa fa-youtube-play"></i></a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Navigation -->
+      <div class="footer-col">
+        <h3>Quick Navigation</h3>
+        <ul class="footer-links-list">
+          <li><a href="INDEX.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Home Portal</a></li>
+          <li><a href="ABOUT US.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> About Us &
+              History</a></li>
+          <li><a href="JOIN US.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Member
+              Registration</a></li>
+          <li><a href="MEDIA.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Photo Gallery &
+              Audio</a></li>
+          <li><a href="RESOURCES.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Books &
+              Manuals</a></li>
+          <li><a href="STAFF & CONTACT.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Leadership &
+              Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Direct Contact Information -->
+      <div class="footer-col">
+        <h3>Contact Leadership</h3>
+        <ul class="footer-contact-list">
+          <li class="footer-contact-item">
+            <i class="fa fa-user-circle"></i>
+            <div>
+              <strong style="color:#fff;">MG Kalsmart Joel</strong>
+              <div style="font-size:0.82rem; color:#94a3b8;">Club Director: +256 788 445652</div>
+            </div>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fa fa-user-circle"></i>
+            <div>
+              <strong style="color:#fff;">Pr. Abraham Birenge</strong>
+              <div style="font-size:0.82rem; color:#94a3b8;">Field Director: +256 774 597457</div>
+            </div>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fa fa-envelope"></i>
+            <div>
+              <span style="font-size:0.85rem;">surprisedickens8@gmail.com</span>
+            </div>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fa fa-map-marker"></i>
+            <div>
+              <span style="font-size:0.85rem;">Karugutu SDA Church, Ntoroko, Uganda</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Developer Acknowledgement Card -->
+      <div class="footer-col">
+        <h3>Webmaster & Credits</h3>
+        <div class="footer-badge-card">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem;">
+            <i class="fa fa-code" style="color:var(--accent); font-size:1.1rem;"></i>
+            <strong style="color:#fff; font-size:0.95rem;">MGT Surprise Dickens</strong>
+          </div>
+          <p style="font-size:0.82rem; color:#cbd5e1; margin-bottom:0.75rem; line-height:1.5;">
+            Developer & Webmaster<br>
+            Hima Seventh-Day Adventist Church<br>
+            <i class="fa fa-phone" style="color:var(--accent); font-size:0.75rem;"></i> +256 730 074079
+          </p>
+          <a href="JOIN US.html" class="btn btn-accent btn-sm"
+            style="width:100%; text-align:center; font-size:0.82rem; padding:0.45rem 0.8rem;">
+            <i class="fa fa-id-card-o"></i> Join Pathfinder Club
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <div>
+          &copy; 2026 <strong>Karugutu Seventh-day Adventist Church Pathfinder Club</strong>. All Rights Reserved.
+        </div>
+        <div style="color:var(--accent); font-weight:600; font-size:0.85rem;">
+          <i class="fa fa-shield"></i> Faith &bull; Adventure &bull; Leadership
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button id="backToTopBtn" class="back-to-top" aria-label="Scroll back to top">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+  </button>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

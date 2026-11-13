@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Library | Karugutu SDA Pathfinder Club</title>
+    <link rel="icon" type="image/png" href="images/KA.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .resource-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+        .resource-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .resource-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background: rgba(11, 29, 58, 0.08);
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+        .resource-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            flex: 1;
+            line-height: 1.6;
+        }
+        .resource-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-top: 0.6rem;
+            border-top: 1px dashed var(--border);
+        }
+        .resource-badge {
+            background: var(--surface-alt);
+            color: var(--navy);
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .resource-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .pdf-preview-frame {
+            width: 100%;
+            height: 70vh;
+            border: none;
+            border-radius: var(--radius-sm);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="site-header">
+        <div class="nav-container">
+            <div class="brand-wrapper">
+                <a href="INDEX.html">
+                    <img src="images/KA.png" alt="Karugutu SDA Pathfinder Logo" class="brand-logo">
+                </a>
+                <div class="brand-text">
+                    <h1>Karugutu Pathfinder Club</h1>
+                    <p>Faith &bull; Adventure &bull; Leadership</p>
+                </div>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="INDEX.html" class="nav-link"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="ABOUT US.html" class="nav-link"><i class="fa fa-info-circle"></i> About Us</a></li>
+                    <li><a href="JOIN US.html" class="nav-link"><i class="fa fa-user-plus"></i> Join Us</a></li>
+                    <li><a href="MEDIA.html" class="nav-link"><i class="fa fa-photo"></i> Media & Audio</a></li>
+                    <li><a href="RESOURCES.html" class="nav-link active"><i class="fa fa-book"></i> Resources</a></li>
+                    <li><a href="STAFF & CONTACT.html" class="nav-link"><i class="fa fa-phone"></i> Staff & Contact</a></li>
+                    <li><a href="JOIN US.html" class="nav-cta-btn"><i class="fa fa-id-card-o"></i> Register</a></li>
+                </ul>
+            </nav>
+
+            <button class="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </header>
+    <div class="mobile-overlay"></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-banner" style="background-image: url('images/resources image.png');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-badge"><i class="fa fa-book"></i> Digital Youth Library</span>
+            <h1 class="hero-title">Pathfinder Resources & Manuals</h1>
+            <p class="hero-subtitle">Access official curriculum guides, honors books, knot manuals, fire craft, and Spirit of Prophecy classics.</p>
+        </div>
+    </section>
+
+    <!-- MAIN WRAPPER -->
+    <main class="main-wrapper">
+
+        <!-- CONTROLS & SEARCH BAR -->
+        <div class="controls-bar">
+            <div class="filter-pills">
+                <button class="filter-pill resource-filter-pill active" data-filter="all">
+                    <i class="fa fa-th"></i> All Resources (14)
+                </button>
+                <button class="filter-pill resource-filter-pill" data-filter="curriculum">
+                    <i class="fa fa-graduation-cap"></i> Curriculum & MG
+                </button>
+                <button class="filter-pill resource-filter-pill" data-filter="honors">
+                    <i class="fa fa-certificate"></i> Honors & Outdoor Skills
+                </button>
+                <button class="filter-pill resource-filter-pill" data-filter="spirituality">
+                    <i class="fa fa-heart"></i> Spirit of Prophecy
+                </button>
+                <button class="filter-pill resource-filter-pill" data-filter="church">
+                    <i class="fa fa-university"></i> Church & Ceremonies
+                </button>
+            </div>
+
+            <div class="search-input-wrapper">
+                <i class="fa fa-search"></i>
+                <input type="text" id="resourceSearchInput" class="search-input" placeholder="Search books, honors, manuals...">
+            </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+            <h2 style="font-size:1.6rem; color:var(--navy);">Document Repository</h2>
+            <span id="resourceCountDisplay" style="color:var(--text-muted); font-size:0.9rem; font-weight:600;">Showing 14 resources</span>
+        </div>
+
+        <!-- RESOURCES GRID -->
+        <div class="resources-grid">
+
+            <!-- 1. Positive Church in a Negative World -->
+            <div class="resource-card" data-category="church">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-file-pdf-o"></i></div>
+                    <div>
+                        <h3 class="resource-title">A Positive Church in a Negative World</h3>
+                        <span class="resource-badge">Church Ministry</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Inspirational leadership guide on maintaining optimistic faith, outreach boldness, and transformative Christian witness in modern society.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~511 KB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="A Positive Church in a Negative World.pdf" data-title="A Positive Church in a Negative World" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="A Positive Church in a Negative World.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Club Ministry Training (CMT) -->
+            <div class="resource-card" data-category="curriculum">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-shield"></i></div>
+                    <div>
+                        <h3 class="resource-title">Club Ministry Training (CMT 2022)</h3>
+                        <span class="resource-badge">Staff Training</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Comprehensive training manual for Adventurer and Pathfinder club counselors, directors, mentors, and executive officers.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~7.3 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="CMT-2022.pdf" data-title="Club Ministry Training (CMT 2022)" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="CMT-2022.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. Master Guide Curriculum Manual -->
+            <div class="resource-card" data-category="curriculum">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-graduation-cap"></i></div>
+                    <div>
+                        <h3 class="resource-title">Master Guide Curriculum Manual</h3>
+                        <span class="resource-badge">Leadership</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    The authoritative portfolio requirements, prerequisites, reading lists, and practical seminars for Master Guide candidate investiture.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~1.3 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="MG-curriculum-manual (1).pdf" data-title="Master Guide Curriculum Manual" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="MG-curriculum-manual (1).pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. Master Guide Portfolio Guide -->
+            <div class="resource-card" data-category="curriculum">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-book"></i></div>
+                    <div>
+                        <h3 class="resource-title">Master Guide Portfolio Guide</h3>
+                        <span class="resource-badge">Investiture Guide</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Step-by-step checklist, documentation templates, and portfolio review standards for completing your Master Guide journey.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~111 KB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="Master Guide Portfolio Guide.pdf" data-title="Master Guide Portfolio Guide" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="Master Guide Portfolio Guide.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. Honors Book 2014 -->
+            <div class="resource-card" data-category="honors">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-certificate"></i></div>
+                    <div>
+                        <h3 class="resource-title">Pathfinder Honors Book (Complete)</h3>
+                        <span class="resource-badge">Honors & Badges</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    The complete official encyclopedia of Pathfinder honors covering Arts, Crafts, Nature, Outdoor Industries, Health, and Science.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~3.8 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="Honors_Book_2014.pdf" data-title="Pathfinder Honors Book" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="Honors_Book_2014.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. Acts of the Apostles -->
+            <div class="resource-card" data-category="spirituality">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-bookmark"></i></div>
+                    <div>
+                        <h3 class="resource-title">The Acts of the Apostles</h3>
+                        <span class="resource-badge">Ellen G. White</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Inspiring chronicle of the early Christian church, the apostolic zeal of Peter and Paul, and the power of the Holy Spirit.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~1.2 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="acts of apostles.pdf" data-title="The Acts of the Apostles - Ellen G. White" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="acts of apostles.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 7. The Great Controversy -->
+            <div class="resource-card" data-category="spirituality">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-bookmark"></i></div>
+                    <div>
+                        <h3 class="resource-title">The Great Controversy</h3>
+                        <span class="resource-badge">Ellen G. White</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Traces the cosmic battle between Christ and Satan from the fall of Jerusalem, through the Reformation, to Christ’s glorious return.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~1.8 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="great controversy.pdf" data-title="The Great Controversy - Ellen G. White" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="great controversy.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 8. Prophets and Kings -->
+            <div class="resource-card" data-category="spirituality">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-bookmark"></i></div>
+                    <div>
+                        <h3 class="resource-title">Prophets and Kings</h3>
+                        <span class="resource-badge">Ellen G. White</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    The history of Israel from King Solomon’s glory through captivity and restoration, highlighting God’s faithfulness to His covenant.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~1.7 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="prophets and kings.pdf" data-title="Prophets and Kings - Ellen G. White" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="prophets and kings.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 9. Uniforms & Ceremonies -->
+            <div class="resource-card" data-category="church">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-flag"></i></div>
+                    <div>
+                        <h3 class="resource-title">Uniforms & Ceremonies Manual</h3>
+                        <span class="resource-badge">Regalia Standards</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Official General Conference regulations on dress uniforms, insignia placement, scarf, sash badges, flag ceremonies, and drills.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~12 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="Uniforms & Ceremonies.pdf" data-title="Uniforms & Ceremonies Manual" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="Uniforms & Ceremonies.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 10. Knot Tying Honor -->
+            <div class="resource-card" data-category="honors">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-link"></i></div>
+                    <div>
+                        <h3 class="resource-title">Knot Tying & Pioneering Honor</h3>
+                        <span class="resource-badge">Outdoor Skills</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Detailed visual diagram guide to mastering bends, hitches, lashings, loop knots, rescue knots, and rope care.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~8.1 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="knot.pdf" data-title="Knot Tying & Pioneering Honor" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="knot.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 11. Fire Building & Camp Cookery -->
+            <div class="resource-card" data-category="honors">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-fire"></i></div>
+                    <div>
+                        <h3 class="resource-title">Fire Building & Camp Cookery</h3>
+                        <span class="resource-badge">Outdoor Skills</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Learn fire safety, tinder preparation, teepee and log cabin fire designs, camp stove management, and healthy outdoor cooking.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~3.1 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="FIRE_BUILDING(1).pdf" data-title="Fire Building & Camp Cookery" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="FIRE_BUILDING(1).pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 12. Backpacking Honor -->
+            <div class="resource-card" data-category="honors">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-compass"></i></div>
+                    <div>
+                        <h3 class="resource-title">Backpacking Honor Guide</h3>
+                        <span class="resource-badge">Wilderness Trekking</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Preparation, trail gear selection, trail etiquette, packing weight distribution, navigation, and leave-no-trace wilderness skills.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~2.7 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="MGO_BackpackingHonor (1).pdf" data-title="Backpacking Honor Guide" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="MGO_BackpackingHonor (1).pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 13. Senior Youth Leadership (SYL) -->
+            <div class="resource-card" data-category="curriculum">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-users"></i></div>
+                    <div>
+                        <h3 class="resource-title">Senior Youth Leadership (SYL)</h3>
+                        <span class="resource-badge">Senior Youth</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    Comprehensive curriculum designed for Ambassadors and Young Adults training to become visionary youth mentors and church leaders.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~2.8 MB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="SYL18-Final-HIGHres.pdf" data-title="Senior Youth Leadership (SYL)" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="SYL18-Final-HIGHres.pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- 14. World Church Calendar 2026 -->
+            <div class="resource-card" data-category="church">
+                <div class="resource-header">
+                    <div class="resource-icon-box"><i class="fa fa-calendar"></i></div>
+                    <div>
+                        <h3 class="resource-title">Special Days & Events Calendar 2026</h3>
+                        <span class="resource-badge">Calendar</span>
+                    </div>
+                </div>
+                <p class="resource-desc">
+                    General Conference schedule for World Pathfinder Day, Global Youth Day, Camporees, and youth weeks of prayer.
+                </p>
+                <div class="resource-meta">
+                    <span>Format: PDF</span>
+                    <span>Size: ~71 KB</span>
+                </div>
+                <div class="resource-actions">
+                    <button class="btn btn-outline btn-sm" data-preview-pdf="Calendar-of-Special-Days-and-Events-World-2026 (2).pdf" data-title="Special Days & Events Calendar 2026" style="color:var(--navy); border-color:var(--border);">
+                        <i class="fa fa-eye"></i> Preview
+                    </button>
+                    <a href="Calendar-of-Special-Days-and-Events-World-2026 (2).pdf" download class="btn btn-primary btn-sm" style="flex:1;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- EXTERNAL DIGITAL ARCHIVE LINK -->
+        <section style="margin-top: 3.5rem; background-color: var(--navy); border-radius: var(--radius-lg); padding: 2.25rem; color:#fff; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.5rem; border:2px solid var(--accent);">
+            <div>
+                <span style="color:var(--accent); font-weight:700; text-transform:uppercase; font-size:0.85rem; letter-spacing:1px;">Online Research Library</span>
+                <h3 style="font-size:1.6rem; margin:0.35rem 0 0.5rem;">Ellen G. White Estate Online Writings</h3>
+                <p style="color:#cbd5e1; font-size:0.95rem; max-width:650px;">
+                    Search over 100,000 pages of published writings, devotions, letters, and Sabbath readings in English and Luganda on the official Ellen G. White Estate platform.
+                </p>
+            </div>
+            <div>
+                <a href="https://ellenwhite.org/" target="_blank" class="btn btn-accent"><i class="fa fa-external-link"></i> Visit EGW Online</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- INTERACTIVE PDF PREVIEW MODAL -->
+    <div id="pdfPreviewModal" class="custom-modal">
+        <div class="modal-dialog" style="max-width: 900px; width: 95%;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="pdfPreviewTitle"><i class="fa fa-file-text-o"></i> Document Preview</h3>
+                <button class="modal-close-btn" data-close-modal>&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 0.5rem;">
+                <iframe id="pdfPreviewIframe" class="pdf-preview-frame" src=""></iframe>
+            </div>
+            <div class="modal-footer">
+                <a id="pdfModalDownloadBtn" href="" download class="btn btn-primary btn-sm">
+                    <i class="fa fa-download"></i> Download File
+                </a>
+                <button class="btn btn-outline btn-sm" data-close-modal style="color:var(--navy); border-color:var(--border);">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Col 1: Club Identity & Social -->
+            <div class="footer-col">
+                <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+                    <img src="images/KA.png" alt="Karugutu SDA Pathfinder Logo" style="width:44px; height:44px; border-radius:50%; background:#fff; padding:2px; border:2px solid var(--accent);">
+                    <div>
+                        <h3 style="margin:0; padding:0; border:none; font-size:1.15rem; color:#fff;">Karugutu Pathfinder Club</h3>
+                        <span style="font-size:0.75rem; color:var(--accent); font-weight:600;">Seventh-day Adventist Youth</span>
+                    </div>
+                </div>
+                <p class="footer-desc">
+                    Empowering youth through faith, discipline, outdoor adventure, and Christian fellowship. Located in Karugutu, Ntoroko District, Rwenzori Field, Uganda.
+                </p>
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61569756547090" target="_blank" class="social-icon-btn" aria-label="Facebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/karugutu_sda_church_pathfinder?igsh=MTYyajJ6eW5udzZ6dw==" target="_blank" class="social-icon-btn" aria-label="Instagram" title="Instagram"><i class="fa fa-instagram"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VbBUS8A5kg73nINDEj068:27%20PM" target="_blank" class="social-icon-btn" aria-label="WhatsApp Channel" title="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+                    <a href="https://www.tiktok.com/@karugutu.sda.chur" target="_blank" class="social-icon-btn" aria-label="TikTok" title="TikTok"><i class="fa fa-music"></i></a>
+                    <a href="https://www.youtube.com/@KarugutuPathfinderClub" target="_blank" class="social-icon-btn" aria-label="YouTube" title="YouTube"><i class="fa fa-youtube-play"></i></a>
+                </div>
+            </div>
+
+            <!-- Col 2: Quick Navigation -->
+            <div class="footer-col">
+                <h3>Quick Navigation</h3>
+                <ul class="footer-links-list">
+                    <li><a href="INDEX.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Home Portal</a></li>
+                    <li><a href="ABOUT US.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> About Us & History</a></li>
+                    <li><a href="JOIN US.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Member Registration</a></li>
+                    <li><a href="MEDIA.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Photo Gallery & Audio</a></li>
+                    <li><a href="RESOURCES.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Books & Manuals</a></li>
+                    <li><a href="STAFF & CONTACT.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Leadership & Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Direct Contact Information -->
+            <div class="footer-col">
+                <h3>Contact Leadership</h3>
+                <ul class="footer-contact-list">
+                    <li class="footer-contact-item">
+                        <i class="fa fa-user-circle"></i>
+                        <div>
+                            <strong style="color:#fff;">MG Kalsmart Joel</strong>
+                            <div style="font-size:0.82rem; color:#94a3b8;">Club Director: +256 788 445652</div>
+                        </div>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i class="fa fa-user-circle"></i>
+                        <div>
+                            <strong style="color:#fff;">Pr. Abraham Birenge</strong>
+                            <div style="font-size:0.82rem; color:#94a3b8;">Field Director: +256 774 597457</div>
+                        </div>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i class="fa fa-envelope"></i>
+                        <div>
+                            <span style="font-size:0.85rem;">surprisedickens8@gmail.com</span>
+                        </div>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i class="fa fa-map-marker"></i>
+                        <div>
+                            <span style="font-size:0.85rem;">Karugutu SDA Church, Ntoroko, Uganda</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Developer Acknowledgement Card -->
+            <div class="footer-col">
+                <h3>Webmaster & Credits</h3>
+                <div class="footer-badge-card">
+                    <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem;">
+                        <i class="fa fa-code" style="color:var(--accent); font-size:1.1rem;"></i>
+                        <strong style="color:#fff; font-size:0.95rem;">MGT Surprise Dickens</strong>
+                    </div>
+                    <p style="font-size:0.82rem; color:#cbd5e1; margin-bottom:0.75rem; line-height:1.5;">
+                        Developer & Webmaster<br>
+                        Hima Seventh-Day Adventist Church<br>
+                        <i class="fa fa-phone" style="color:var(--accent); font-size:0.75rem;"></i> +256 730 074079
+                    </p>
+                    <a href="JOIN US.html" class="btn btn-accent btn-sm" style="width:100%; text-align:center; font-size:0.82rem; padding:0.45rem 0.8rem;">
+                        <i class="fa fa-id-card-o"></i> Join Pathfinder Club
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <div>
+                    &copy; 2026 <strong>Karugutu Seventh-day Adventist Church Pathfinder Club</strong>. All Rights Reserved.
+                </div>
+                <div style="color:var(--accent); font-weight:600; font-size:0.85rem;">
+                    <i class="fa fa-shield"></i> Faith &bull; Adventure &bull; Leadership
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING BACK TO TOP BUTTON -->
+    <button id="backToTopBtn" class="back-to-top" aria-label="Scroll back to top">
+        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

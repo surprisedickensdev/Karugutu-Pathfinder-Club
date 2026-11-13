@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Gallery & Audio | Karugutu SDA Pathfinder Club</title>
+  <link rel="icon" type="image/png" href="KA.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .gallery-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .gallery-thumbnail-wrap {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+      background-color: #0d1b2a;
+    }
+
+    .gallery-thumbnail-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    .gallery-card:hover .gallery-thumbnail-wrap img {
+      transform: scale(1.08);
+    }
+
+    .gallery-hover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 27, 42, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-card:hover .gallery-hover-overlay {
+      opacity: 1;
+    }
+
+    .gallery-zoom-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery-meta {
+      padding: 0.9rem 1rem;
+    }
+
+    .gallery-caption {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.35;
+    }
+
+    .gallery-tag {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand-wrapper">
+        <a href="INDEX.html">
+          <img src="KA.png" alt="Karugutu SDA Pathfinder Logo" class="brand-logo">
+        </a>
+        <div class="brand-text">
+          <h1>Karugutu Pathfinder Club</h1>
+          <p>Faith &bull; Adventure &bull; Leadership</p>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="INDEX.html" class="nav-link"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="ABOUT US.html" class="nav-link"><i class="fa fa-info-circle"></i> About Us</a></li>
+          <li><a href="JOIN US.html" class="nav-link"><i class="fa fa-user-plus"></i> Join Us</a></li>
+          <li><a href="MEDIA.html" class="nav-link active"><i class="fa fa-photo"></i> Media & Audio</a></li>
+          <li><a href="RESOURCES.html" class="nav-link"><i class="fa fa-book"></i> Resources</a></li>
+          <li><a href="STAFF & CONTACT.html" class="nav-link"><i class="fa fa-phone"></i> Staff & Contact</a></li>
+          <li><a href="JOIN US.html" class="nav-cta-btn"><i class="fa fa-id-card-o"></i> Register</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-banner" style="background-image: url('gc-building-statement.jpeg');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge"><i class="fa fa-camera-retro"></i> Multimedia Hub</span>
+      <h1 class="hero-title">Photo Gallery & Marching Station</h1>
+      <p class="hero-subtitle">Browse through moments of faith, drilling cadences, camporees, and Bible experience
+        competitions.</p>
+      <div class="hero-actions">
+        <a href="#gallerySection" class="btn btn-accent"><i class="fa fa-picture-o"></i> Explore Photos</a>
+        <a href="#audioPlayerSection" class="btn btn-primary"><i class="fa fa-play-circle"></i> Listen to Beats &
+          Songs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN WRAPPER -->
+  <main class="main-wrapper" id="gallerySection">
+
+    <!-- CONTROLS & FILTER BAR -->
+    <div class="controls-bar">
+      <div class="filter-pills">
+        <button class="filter-pill gallery-filter-pill active" data-filter="all">
+          <i class="fa fa-th"></i> All Photos (45)
+        </button>
+        <button class="filter-pill gallery-filter-pill" data-filter="club">
+          <i class="fa fa-shield"></i> Club & Camporees
+        </button>
+        <button class="filter-pill gallery-filter-pill" data-filter="pbe">
+          <i class="fa fa-book"></i> Bible Experience (PBE)
+        </button>
+        <button class="filter-pill gallery-filter-pill" data-filter="friends">
+          <i class="fa fa-users"></i> Friends & Leadership
+        </button>
+      </div>
+
+      <div class="search-input-wrapper">
+        <i class="fa fa-search"></i>
+        <input type="text" id="gallerySearchInput" class="search-input" placeholder="Search photos, persons, events...">
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+      <h2 style="font-size:1.6rem; color:var(--navy);">Photo Gallery</h2>
+      <span id="galleryCountDisplay" style="color:var(--text-muted); font-size:0.9rem; font-weight:600;">Showing 45
+        photos</span>
+    </div>
+
+    <!-- GALLERY GRID -->
+    <div class="gallery-grid" id="galleryItemsContainer">
+
+      <!-- CATEGORY 1: CLUB & CAMPOREES -->
+      <div class="gallery-card" data-category="club" data-caption="Augustine Bwambale Asigya - Media Director">
+        <div class="gallery-thumbnail-wrap">
+          <img src="asigya.jpeg" alt="Augustine Bwambale Asigya" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Augustine Bwambale Asigya</div>
+          <span class="gallery-tag">Club Leadership & Media</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Karugutu Staff Members & Flag Bearers">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/flags.jpeg" alt="Staff Members" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Staff Members & Flag Bearers</div>
+          <span class="gallery-tag">Leadership</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Nchwanga Camporee - Kakumiro District">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/group 1.jpeg" alt="Nchwanga Camporee" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Nchwanga Camporee Delegation</div>
+          <span class="gallery-tag">Camporee Events</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Karugutu Pathfinder Club Girls Unit">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/group 2.jpeg" alt="Girls Unit" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Karugutu Club Girls Unit</div>
+          <span class="gallery-tag">Cadet Units</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Karugutu Pathfinder Club Boys Unit">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/group 3.jpeg" alt="Boys Unit" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Karugutu Club Boys Unit</div>
+          <span class="gallery-tag">Cadet Units</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Parade Drills - Kakumiro Camporee">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/parade 1.jpeg" alt="Parade Drills" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Parade Marching Formation 1</div>
+          <span class="gallery-tag">Drill & Parade</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Parade Drills - Marching Inspection">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/parade 2.jpeg" alt="Parade Inspection" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Parade Marching Formation 2</div>
+          <span class="gallery-tag">Drill & Parade</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Cadet Waiswa at Kakumiro Camporee">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/waiswa.jpeg" alt="Waiswa" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Cadet Waiswa at Camporee</div>
+          <span class="gallery-tag">Camporee Events</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Master Guide Portfolio Presentation">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/portfolio.jpeg" alt="Portfolio" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Master Guide Portfolio Review</div>
+          <span class="gallery-tag">Training & Investiture</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="I Will Go - Official Camporee Theme Emblem">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/i will go.jpeg" alt="I Will Go" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">"I Will Go" Camporee Theme</div>
+          <span class="gallery-tag">Inspirational Emblem</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Nchwanga Camporee Grounds Assembly">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/img.jpeg" alt="Camporee Assembly" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Camporee Grounds Assembly</div>
+          <span class="gallery-tag">Camporee Events</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Campfire Rehearsal & Devotion">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/img1.jpeg" alt="Camp Devotion" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Campfire Devotion & Bonding</div>
+          <span class="gallery-tag">Outdoor Camping</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Rwenzori Field Ambassador Group">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/img3.jpeg" alt="Ambassador Group" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Rwenzori Field Ambassadors</div>
+          <span class="gallery-tag">Senior Youth</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Church Elder Shadiba Jeremiah">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/img5.jpeg" alt="Elder Shadiba" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Elder Shadiba Jeremiah</div>
+          <span class="gallery-tag">Church Patron</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Club Captain Muhesi Edwardo Ronex">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/img6.jpeg" alt="Muhesi Edwardo Ronex" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Club Captain Muhesi Edwardo Ronex</div>
+          <span class="gallery-tag">Student Leadership</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="club" data-caption="Pathfinder Director Kalsmart Joel">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/img7.jpeg" alt="Director Kalsmart Joel" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Director Kalsmart Joel</div>
+          <span class="gallery-tag">Club Director</span>
+        </div>
+      </div>
+
+      <!-- CATEGORY 2: BIBLE EXPERIENCE (PBE) -->
+      <div class="gallery-card" data-category="pbe" data-caption="Pathfinder Bible Experience Competition">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/img2.jpeg" alt="PBE Competition" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Karugutu PBE Testing Team</div>
+          <span class="gallery-tag">Scripture Testing</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Bible Experience Delegation Team">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont.jpeg" alt="PBE Team" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Bible Experience Delegation</div>
+          <span class="gallery-tag">Scripture Testing</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Kampala Central Church Main Sanctuary">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont 1.jpeg" alt="Kampala Central Church" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Kampala Central Church Sanctuary</div>
+          <span class="gallery-tag">Competition Venue</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Centennial Youth Camporee Session">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont 11.jpeg" alt="Centennial Camporee" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Centennial Youth Camporee Session</div>
+          <span class="gallery-tag">Camporee Events</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Edwardo with Fellow Cadets">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont 12.jpeg" alt="Edwardo" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Edwardo with Fellow Cadets</div>
+          <span class="gallery-tag">Fellowship</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Centennial Camporee Stage Program">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont 5.jpeg" alt="Camporee Stage" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Camporee Stage Honors Program</div>
+          <span class="gallery-tag">Camporee Events</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Instructor Mutalinga Jockim at PBE">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont 6.jpeg" alt="Mutalinga Jockim" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Instructor Mutalinga Jockim</div>
+          <span class="gallery-tag">Club Mentorship</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Kampala Central Church - Union Convention">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont 7.jpeg" alt="Union Convention" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Union Convention Delegation</div>
+          <span class="gallery-tag">Union Events</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Kampala Central Church Fellowship">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont 8.jpeg" alt="Fellowship" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Pathfinder Union Fellowship</div>
+          <span class="gallery-tag">Union Events</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="pbe" data-caption="Kampala Central Church Choir Performance">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/cont 9.jpeg" alt="Choir Performance" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Union Choir Performance</div>
+          <span class="gallery-tag">Union Events</span>
+        </div>
+      </div>
+
+      <!-- CATEGORY 3: FRIENDS & SISTER CLUBS -->
+      <div class="gallery-card" data-category="friends" data-caption="Instructor MGT Surprise Dickens">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 1.jpg" alt="Surprise Dickens" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Instructor MGT Surprise Dickens</div>
+          <span class="gallery-tag">Webmaster & Instructor</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends"
+        data-caption="Instructor MGT Surprise Dickens & Augustine Bwambale">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 2.jpg" alt="Surprise & Augustine" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Surprise Dickens & Augustine Bwambale</div>
+          <span class="gallery-tag">Club Instructors</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Precious - Dedicated Pathfinder Cadet">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 4.jpg" alt="Precious" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Cadet Precious</div>
+          <span class="gallery-tag">Cadet Profiles</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Ariana - Youth Leader">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 6.jpg" alt="Ariana" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Cadet Ariana</div>
+          <span class="gallery-tag">Cadet Profiles</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Hima Pathfinder Club - Sister Club in Rwenzori">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 7.jpg" alt="Hima Pathfinder Club" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Hima Pathfinder Club</div>
+          <span class="gallery-tag">Sister Clubs</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Hima Club Cadets at Camporee">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 8.jpg" alt="Hima Club" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Hima Club Cadets</div>
+          <span class="gallery-tag">Sister Clubs</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Nyangoma Justine - Youth Member">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 9.jpg" alt="Nyangoma Justine" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Nyangoma Justine</div>
+          <span class="gallery-tag">Cadet Profiles</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Hima Pathfinder Club Uniform Parade">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 10.jpg" alt="Hima Club Parade" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Hima Club Uniform Parade</div>
+          <span class="gallery-tag">Sister Clubs</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Instructor Surprise in Full Regalia">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 11.jpg" alt="Surprise" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Instructor Surprise in Full Regalia</div>
+          <span class="gallery-tag">Leadership</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Hima Club Drill Team">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 12.jpg" alt="Hima Drill Team" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Hima Club Drill Cadence</div>
+          <span class="gallery-tag">Sister Clubs</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Hima Cadets in Formation">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 14.jpg" alt="Formation" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Hima Cadets in Formation</div>
+          <span class="gallery-tag">Sister Clubs</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Hima Club Friendship Rally">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 15.jpg" alt="Friendship Rally" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Hima Club Friendship Rally</div>
+          <span class="gallery-tag">Sister Clubs</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Hima Pathfinder Cadets at Church">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 16.jpg" alt="Hima Cadets" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Hima Cadets at Sabbath Service</div>
+          <span class="gallery-tag">Sister Clubs</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Maate Harison - Dedicated Leader">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 17.jpg" alt="Maate Harison" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Leader Maate Harison</div>
+          <span class="gallery-tag">Leadership</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Young Adventurer Cadet">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 22.jpg" alt="Adventurer" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Adventurer Cadet</div>
+          <span class="gallery-tag">Adventurers</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Surprise Dickens on Campout">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 23.jpg" alt="Surprise Campout" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Surprise Dickens on Campout</div>
+          <span class="gallery-tag">Camporee Events</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Cadet Clovia">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 25.jpg" alt="Clovia" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Cadet Clovia</div>
+          <span class="gallery-tag">Cadet Profiles</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Cadets Ariana & Harriet">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 29.jpg" alt="Ariana & Harriet" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Cadets Ariana & Harriet</div>
+          <span class="gallery-tag">Fellowship</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="friends" data-caption="Instructor MGT Surprise Dickens Salute">
+        <div class="gallery-thumbnail-wrap">
+          <img src="images/scroll 30.jpg" alt="Surprise Salute" loading="lazy">
+          <div class="gallery-hover-overlay">
+            <div class="gallery-zoom-icon"><i class="fa fa-arrows-alt"></i></div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-caption">Instructor MGT Surprise Dickens Salute</div>
+          <span class="gallery-tag">Leadership</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- INTERACTIVE AUDIO PLAYER DASHBOARD -->
+    <section id="audioPlayerSection" style="margin-top: 4.5rem;">
+      <div class="section-header">
+        <span class="section-tag">Audio Streaming Station</span>
+        <h2 class="section-title">Drills, Marching Beats & Hymns</h2>
+        <p class="section-desc">Stream our official marching beats, drumline cadences, and Pathfinder choir songs
+          directly in your browser.</p>
+      </div>
+
+      <div class="audio-dashboard">
+        <div class="player-header">
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <div
+              style="width:38px; height:38px; border-radius:50%; background:var(--accent); color:var(--navy); display:flex; align-items:center; justify-content:center; font-size:1.1rem;">
+              <i class="fa fa-music"></i>
+            </div>
+            <div>
+              <h3 style="font-size:1.25rem; margin:0;">Pathfinder Sound Station</h3>
+              <span style="font-size:0.78rem; color:#94a3b8;">High Fidelity Audio</span>
+            </div>
+          </div>
+
+          <div class="player-tabs">
+            <button id="tabHymnsBtn" class="player-tab-btn active">
+              <i class="fa fa-microphone"></i> Club Songs & Hymns
+            </button>
+            <button id="tabBeatsBtn" class="player-tab-btn">
+              <i class="fa fa-shield"></i> Drills & Marching Beats
+            </button>
+          </div>
+        </div>
+
+        <div class="player-main">
+          <!-- Left: Vinyl Visualizer Card -->
+          <div class="now-playing-card">
+            <div id="audioDiscVisual" class="now-playing-disc">
+              <div class="disc-inner"></div>
+            </div>
+            <div id="audioTrackTitle" class="track-info-title">Enzighu Audio</div>
+            <div id="audioTrackArtist" class="track-info-artist">Karugutu SDA Pathfinder Club</div>
+          </div>
+
+          <!-- Right: Controls & Scrubber -->
+          <div class="player-controls-container">
+            <div class="progress-area">
+              <div id="audioProgressBarWrapper" class="progress-bar-wrapper">
+                <div id="audioProgressFill" class="progress-fill"></div>
+              </div>
+              <div class="time-stamps">
+                <span id="audioCurrentTime">00:00</span>
+                <span id="audioDurationTime">--:--</span>
+              </div>
+            </div>
+
+            <div class="main-controls">
+              <button id="audioPrevBtn" class="btn-ctrl" aria-label="Previous Track">
+                <i class="fa fa-step-backward"></i>
+              </button>
+              <button id="audioPlayPauseBtn" class="btn-ctrl btn-play-pause" aria-label="Play or Pause">
+                <i class="fa fa-play"></i>
+              </button>
+              <button id="audioNextBtn" class="btn-ctrl" aria-label="Next Track">
+                <i class="fa fa-step-forward"></i>
+              </button>
+            </div>
+
+            <div class="volume-container">
+              <button id="audioMuteBtn" style="background:transparent; color:#94a3b8; font-size:1rem;"
+                aria-label="Mute toggle">
+                <i class="fa fa-volume-up"></i>
+              </button>
+              <input type="range" id="audioVolumeSlider" class="volume-slider" min="0" max="1" step="0.05" value="0.9"
+                aria-label="Volume">
+            </div>
+
+            <!-- Track List Playlist Container -->
+            <div id="audioPlaylistItems" class="playlist-container">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- INTERACTIVE LIGHTBOX MODAL -->
+  <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div class="lightbox-top-bar">
+      <div class="lightbox-counter">1 / 45</div>
+      <div class="lightbox-tools">
+        <button class="lightbox-btn lightbox-zoom-btn" title="Toggle Zoom"><i class="fa fa-search-plus"></i></button>
+        <button class="lightbox-btn lightbox-download-btn" title="Download Image"><i
+            class="fa fa-download"></i></button>
+        <button class="lightbox-btn lightbox-close-btn" title="Close Lightbox (Esc)"><i
+            class="fa fa-times"></i></button>
+      </div>
+    </div>
+
+    <button class="lightbox-nav-btn lightbox-prev" aria-label="Previous image"><i
+        class="fa fa-chevron-left"></i></button>
+
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img">
+    </div>
+
+    <button class="lightbox-nav-btn lightbox-next" aria-label="Next image"><i class="fa fa-chevron-right"></i></button>
+
+    <div class="lightbox-caption-box">Caption</div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <!-- Col 1: Club Identity & Social -->
+      <div class="footer-col">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <img src="KA.png" alt="Karugutu SDA Pathfinder Logo"
+            style="width:44px; height:44px; border-radius:50%; background:#fff; padding:2px; border:2px solid var(--accent);">
+          <div>
+            <h3 style="margin:0; padding:0; border:none; font-size:1.15rem; color:#fff;">Karugutu Pathfinder Club</h3>
+            <span style="font-size:0.75rem; color:var(--accent); font-weight:600;">Seventh-day Adventist Youth</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          Empowering youth through faith, discipline, outdoor adventure, and Christian fellowship. Located in Karugutu,
+          Ntoroko District, Rwenzori Field, Uganda.
+        </p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/profile.php?id=61569756547090" target="_blank" class="social-icon-btn"
+            aria-label="Facebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.instagram.com/karugutu_sda_church_pathfinder?igsh=MTYyajJ6eW5udzZ6dw==" target="_blank"
+            class="social-icon-btn" aria-label="Instagram" title="Instagram"><i class="fa fa-instagram"></i></a>
+          <a href="https://whatsapp.com/channel/0029VbBUS8A5kg73nINDEj068:27%20PM" target="_blank"
+            class="social-icon-btn" aria-label="WhatsApp Channel" title="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+          <a href="https://www.tiktok.com/@karugutu.sda.chur" target="_blank" class="social-icon-btn"
+            aria-label="TikTok" title="TikTok"><i class="fa fa-music"></i></a>
+          <a href="https://www.youtube.com/@KarugutuPathfinderClub" target="_blank" class="social-icon-btn"
+            aria-label="YouTube" title="YouTube"><i class="fa fa-youtube-play"></i></a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Navigation -->
+      <div class="footer-col">
+        <h3>Quick Navigation</h3>
+        <ul class="footer-links-list">
+          <li><a href="INDEX.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Home Portal</a></li>
+          <li><a href="ABOUT US.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> About Us &
+              History</a></li>
+          <li><a href="JOIN US.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Member
+              Registration</a></li>
+          <li><a href="MEDIA.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Photo Gallery &
+              Audio</a></li>
+          <li><a href="RESOURCES.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Books &
+              Manuals</a></li>
+          <li><a href="STAFF & CONTACT.html"><i class="fa fa-angle-right" style="color:var(--accent);"></i> Leadership &
+              Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Direct Contact Information -->
+      <div class="footer-col">
+        <h3>Contact Leadership</h3>
+        <ul class="footer-contact-list">
+          <li class="footer-contact-item">
+            <i class="fa fa-user-circle"></i>
+            <div>
+              <strong style="color:#fff;">MG Kalsmart Joel</strong>
+              <div style="font-size:0.82rem; color:#94a3b8;">Club Director: +256 788 445652</div>
+            </div>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fa fa-user-circle"></i>
+            <div>
+              <strong style="color:#fff;">Pr. Abraham Birenge</strong>
+              <div style="font-size:0.82rem; color:#94a3b8;">Field Director: +256 774 597457</div>
+            </div>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fa fa-envelope"></i>
+            <div>
+              <span style="font-size:0.85rem;">surprisedickens8@gmail.com</span>
+            </div>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fa fa-map-marker"></i>
+            <div>
+              <span style="font-size:0.85rem;">Karugutu SDA Church, Ntoroko, Uganda</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Developer Acknowledgement Card -->
+      <div class="footer-col">
+        <h3>Webmaster & Credits</h3>
+        <div class="footer-badge-card">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem;">
+            <i class="fa fa-code" style="color:var(--accent); font-size:1.1rem;"></i>
+            <strong style="color:#fff; font-size:0.95rem;">MGT Surprise Dickens</strong>
+          </div>
+          <p style="font-size:0.82rem; color:#cbd5e1; margin-bottom:0.75rem; line-height:1.5;">
+            Developer & Webmaster<br>
+            Hima Seventh-Day Adventist Church<br>
+            <i class="fa fa-phone" style="color:var(--accent); font-size:0.75rem;"></i> +256 730 074079
+          </p>
+          <a href="JOIN US.html" class="btn btn-accent btn-sm"
+            style="width:100%; text-align:center; font-size:0.82rem; padding:0.45rem 0.8rem;">
+            <i class="fa fa-id-card-o"></i> Join Pathfinder Club
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <div>
+          &copy; 2026 <strong>Karugutu Seventh-day Adventist Church Pathfinder Club</strong>. All Rights Reserved.
+        </div>
+        <div style="color:var(--accent); font-weight:600; font-size:0.85rem;">
+          <i class="fa fa-shield"></i> Faith &bull; Adventure &bull; Leadership
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button id="backToTopBtn" class="back-to-top" aria-label="Scroll back to top">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+  </button>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
